@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Shaswati2005/educase_/static/css/main.74453a94.css",
-    "main.js": "/Shaswati2005/educase_/static/js/main.9ee7c4f2.js",
-    "static/js/453.b1a6d3bf.chunk.js": "/Shaswati2005/educase_/static/js/453.b1a6d3bf.chunk.js",
-    "index.html": "/Shaswati2005/educase_/index.html",
-    "main.74453a94.css.map": "/Shaswati2005/educase_/static/css/main.74453a94.css.map",
-    "main.9ee7c4f2.js.map": "/Shaswati2005/educase_/static/js/main.9ee7c4f2.js.map",
-    "453.b1a6d3bf.chunk.js.map": "/Shaswati2005/educase_/static/js/453.b1a6d3bf.chunk.js.map"
+    "main.css": "/educase_/static/css/main.74453a94.css",
+    "main.js": "/educase_/static/js/main.63e85253.js",
+    "static/js/453.b1a6d3bf.chunk.js": "/educase_/static/js/453.b1a6d3bf.chunk.js",
+    "index.html": "/educase_/index.html",
+    "main.74453a94.css.map": "/educase_/static/css/main.74453a94.css.map",
+    "main.63e85253.js.map": "/educase_/static/js/main.63e85253.js.map",
+    "453.b1a6d3bf.chunk.js.map": "/educase_/static/js/453.b1a6d3bf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.74453a94.css",
-    "static/js/main.9ee7c4f2.js"
+    "static/js/main.63e85253.js"
   ]
 }
