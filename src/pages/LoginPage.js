@@ -1,11 +1,14 @@
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useNavigate } from 'react-router-dom';  
+import { useNavigate } from 'react-router-dom';
 
+// Zod schema with required validation
 const loginSchema = z.object({
-  email: z.string().email({ message: "Invalid email address" }),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  email: z.string({ required_error: "Email is required" })
+           .email({ message: "Invalid email address" }),
+  password: z.string({ required_error: "Password is required" })
+             .min(6, "Password must be at least 6 characters"),
 });
 
 export default function LoginPage() {
@@ -17,12 +20,12 @@ export default function LoginPage() {
     resolver: zodResolver(loginSchema),
   });
 
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
     console.log("Login Data:", data);
-    // handle login logic
+    navigate('/home'); // Navigate only if valid
   };
-
-  const navigate = useNavigate();
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
@@ -34,8 +37,11 @@ export default function LoginPage() {
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Email */}
           <div>
-            <label className="text-sm text-purple-600 font-medium">Email Address</label>
+            <label className="text-sm text-purple-600 font-medium">
+              Email Address<span className="text-red-500">*</span>
+            </label>
             <input
               type="email"
               {...register("email")}
@@ -47,8 +53,11 @@ export default function LoginPage() {
             )}
           </div>
 
+          {/* Password */}
           <div>
-            <label className="text-sm text-purple-600 font-medium">Password</label>
+            <label className="text-sm text-purple-600 font-medium">
+              Password<span className="text-red-500">*</span>
+            </label>
             <input
               type="password"
               {...register("password")}
@@ -60,10 +69,10 @@ export default function LoginPage() {
             )}
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-3 rounded-md bg-gray-300 text-white font-semibold"
-            onClick={()=> navigate('/home')}
+            className="w-full py-3 rounded-md bg-purple-600 text-white font-semibold"
           >
             Login
           </button>

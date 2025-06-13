@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const signupSchema = z.object({
   fullName: z.string().min(1, "Full Name is required"),
-  phone: z.string().min(10, "Phone number is required"),
+  phone: z.string().min(10, "Phone number must be at least 10 digits"),
   email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
   company: z.string().optional(),
@@ -23,19 +23,22 @@ export default function SignupPage() {
     resolver: zodResolver(signupSchema),
   });
 
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
     console.log("Signup Data:", data);
+    navigate('/home'); // only navigate on successful form submission
   };
 
-   const navigate = useNavigate();
- 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
       <div className="w-[367px] h-auto border border-gray-200 bg-gray-50 px-6 pt-12 pb-8">
         <h1 className="text-2xl font-bold text-gray-900 mb-6">Create your PopX account</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="text-sm text-purple-600 font-medium">Full Name*</label>
+            <label className="text-sm text-purple-600 font-medium">
+              Full Name<span className="text-red-500">*</span>
+            </label>
             <input
               {...register("fullName")}
               placeholder="Full Name"
@@ -45,7 +48,9 @@ export default function SignupPage() {
           </div>
 
           <div>
-            <label className="text-sm text-purple-600 font-medium">Phone number*</label>
+            <label className="text-sm text-purple-600 font-medium">
+              Phone number<span className="text-red-500">*</span>
+            </label>
             <input
               {...register("phone")}
               placeholder="Phone number"
@@ -55,7 +60,9 @@ export default function SignupPage() {
           </div>
 
           <div>
-            <label className="text-sm text-purple-600 font-medium">Email address*</label>
+            <label className="text-sm text-purple-600 font-medium">
+              Email address<span className="text-red-500">*</span>
+            </label>
             <input
               {...register("email")}
               placeholder="Email"
@@ -65,7 +72,9 @@ export default function SignupPage() {
           </div>
 
           <div>
-            <label className="text-sm text-purple-600 font-medium">Password *</label>
+            <label className="text-sm text-purple-600 font-medium">
+              Password<span className="text-red-500">*</span>
+            </label>
             <input
               type="password"
               {...register("password")}
@@ -85,7 +94,9 @@ export default function SignupPage() {
           </div>
 
           <div>
-            <p className="text-sm font-medium text-gray-700 mb-1">Are you an Agency?*</p>
+            <p className="text-sm font-medium text-purple-600 mb-1">
+              Are you an Agency?<span className="text-red-500">*</span>
+            </p>
             <div className="flex gap-6">
               <label className="flex items-center gap-2">
                 <input
@@ -106,13 +117,14 @@ export default function SignupPage() {
                 No
               </label>
             </div>
-            {errors.isAgency && <p className="text-red-500 text-xs mt-1">{errors.isAgency.message}</p>}
+            {errors.isAgency && (
+              <p className="text-red-500 text-xs mt-1">{errors.isAgency.message}</p>
+            )}
           </div>
 
           <button
             type="submit"
             className="w-full py-3 rounded-md bg-purple-600 text-white font-semibold mt-4"
-            onClick={()=> navigate('/home')}
           >
             Create Account
           </button>

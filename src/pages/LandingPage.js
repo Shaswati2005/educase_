@@ -15,14 +15,14 @@ export default function LandingPage() {
         <div className="space-y-4">
           <button
             onClick={() => navigate('/signup')}
-            className="w-full py-3 rounded-md bg-purple-600 text-white font-semibold"
+            className="w-full py-3 rounded-md bg-[#6c25ff] text-white font-semibold"
           >
             Create Account
           </button>
 
           <button
             onClick={() => navigate('/login')}
-            className="w-full py-3 rounded-md bg-purple-200 text-black font-semibold"
+            className="w-full py-3 rounded-md bg-[#6c25ff4b] text-black font-semibold"
           >
             Already Registered? Login
           </button>
